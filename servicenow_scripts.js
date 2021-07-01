@@ -134,7 +134,7 @@ grt.addQuery('change_request', 'eaf5d21347c12200e0ef563dbb9a7109');
 grt.query();
 while(grt.next()) {
 	if (grt.state != 4) {
-		grt.state = 4;
+		grt.state = 4;    // 4-canceled, 3-closed
 		grt.update();
 	}
 }
