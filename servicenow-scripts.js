@@ -178,5 +178,5 @@ function getSysid(num){
 		return '';
 }
 
-
-gr.setWorkflow(false); // before the update() , so no business rules are run
+// before the update() , so no business rules are run 
+gr.setWorkflow(false); 
