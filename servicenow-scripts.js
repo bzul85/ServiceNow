@@ -21,7 +21,7 @@ var gr = new GlideRecord('change_task');
 gr.addQuery('number', 'CTASK0111702');
 gr.query();
 if(gr.next()) {
-   gr.state = '4';
+   gr.state = '4'; //4-canceled , 3-closed
    gr.update();
 }
 
