@@ -144,7 +144,7 @@ var gr = new GlideRecord('change_task');
 		var newdate = date.getDisplayValue();
         	gs.log(gr.number + '\n');
                 gs.log('new date is: ' +  newdate);
-        	gr.state = '3';
+        	gr.state = '3';  // 3 - closed , 4 - cancelled
         	gr.work_start = newdate;
                 gr.work_end = newdate;
                 gr.update();
