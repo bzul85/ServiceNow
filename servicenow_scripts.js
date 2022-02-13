@@ -1,4 +1,4 @@
-//  Change Closure Code in Change Request
+//  >>>>>>>>>>>>>>>>>>>>>>> Change Closure Code in Change Request <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var gr = new GlideRecord('change_request');
 gr.addQuery('number', 'CHG0069215');
 gr.query();
@@ -9,7 +9,7 @@ gr.update();
 } 
 
 
-// CHANGE STATE IN CHANGE REQUEST 
+// >>>>>>>>>>>>>>>>>>>>>>> CHANGE STATE IN CHANGE REQUEST <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var gr = new GlideRecord('change_request');
 gr.addQuery('number', 'CHG0042583');
 gr.query();
@@ -26,7 +26,7 @@ while (target.next()) {
   // add code here to process the incident record 
 }
 
-// UPDATE RITM / SRQ
+// >>>>>>>>>>>>>>>>>>>>>>> UPDATE RITM / SRQ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var gr = new GlideRecord('sc_req_item');
 gr.addQuery('number', 'RITM0040224'); // ritm number
 gr.query();
@@ -36,7 +36,7 @@ if(gr.next()) {
 }
 
 
-// UPDATE CHANGE TASK
+// >>>>>>>>>>>>>>>>>>>>>>> UPDATE CHANGE TASK <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var gr = new GlideRecord('change_task');
 gr.addQuery('number', 'CTASK0111702');
 gr.query();
@@ -45,7 +45,7 @@ if(gr.next()) {
    gr.update();
 }
 
-// UPDATE CHANGE TASK EX2
+// >>>>>>>>>>>>>>>>>>>>>>> UPDATE CHANGE TASK EX2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 if(current.number == 4){
 	var gr = new GlideRecord('change_task');
 	gr.addQuery('change_request.number', current.number); // g_form.GetValue only works on client scripts and br's run on the server.. so you can't use g_form, instead use current.number
@@ -57,7 +57,7 @@ if(current.number == 4){
 }
 
 
-// CREATE CHANGE TASKS FOR A SINGLE CHANGE REQUEST
+// >>>>>>>>>>>>>>>>>>>>>>> CREATE CHANGE TASKS FOR A SINGLE CHANGE REQUEST <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var gr = new GlideRecord('change_task');
 // Create first change_task for each of the changes listed in the above array
 gr.addQuery('change_request', '1c87925347c12200e0ef563dbb9a7177');
@@ -67,7 +67,7 @@ gr.short_description = 'Notify Service Desk';
 gr.assignment_group = 'Change Management';
 gr.insert();
 
-// Create 2nd change_task for each of the changes listed in the above array
+// >>>>>>>>>>>>>>>>>>>>>>> Create 2nd change_task for each of the changes listed in the above array <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var gr = new GlideRecord('change_task');
 gr.addQuery('change_request', '1c87925347c12200e0ef563dbb9a7177');
 gr.query();
@@ -76,7 +76,7 @@ gr.short_description = 'Implement the change';
 gr.assignment_group = 'Change Management';
 gr.insert();
 
-// Create 3nd change_task for each of the changes listed in the above array
+// >>>>>>>>>>>>>>>>>>>>>>> Create 3nd change_task for each of the changes listed in the above array <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var gr = new GlideRecord('change_task');
 gr.addQuery('change_request', '1c87925347c12200e0ef563dbb9a7177');
 gr.query();
@@ -86,7 +86,7 @@ gr.assignment_group = 'Change Management';
 gr.insert();
 
 
-// CREATE CHANGE TASKS FOR MULTIPLE CHANGE REQUESTS
+// >>>>>>>>>>>>>>>>>>>>>>> CREATE CHANGE TASKS FOR MULTIPLE CHANGE REQUESTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var change_arr = ['CHG0040005', 'CHG0040006']; //Iterate through the changes that need these new change tasks
 
 for (var i=0; i < change_arr.length; i++){
@@ -128,7 +128,7 @@ function getSysid(num){
 		return '';
 }
 
-// CANCEL CHANGE TASKS FOR A SINGLE CHANGE REQUEST
+// >>>>>>>>>>>>>>>>>>>>>>> CANCEL CHANGE TASKS FOR A SINGLE CHANGE REQUEST <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var grt = new GlideRecord('change_task');
 grt.addQuery('change_request', 'eaf5d21347c12200e0ef563dbb9a7109');
 grt.query();
@@ -139,7 +139,7 @@ while(grt.next()) {
 	}
 }
 
-// CANCEL CHANGE TASKS FOR A SINGLE CHANGE REQUEST
+// >>>>>>>>>>>>>>>>>>>>>>> CANCEL CHANGE TASKS FOR A SINGLE CHANGE REQUEST <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var gr = new GlideRecord('change_task');
 	gr.addQuery('change_request', '4e2b3e895f7e289864d574a460069cdd');
         gr.addEncodedQuery('stateIN-5,1,2');
@@ -152,7 +152,7 @@ var gr = new GlideRecord('change_task');
         gr.update();
 }
 
-// CANCEL CHANGE TASKS FOR MULTIPLE CHANGE REQUESTS
+// >>>>>>>>>>>>>>>>>>>>>>> CANCEL CHANGE TASKS FOR MULTIPLE CHANGE REQUESTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 var change_arr = ['CHG0040003', 'CHG0040005', 'CHG0040006']; //Iterate through the changes that need their change tasks to be cancelled
 
 for (var i=0; i < change_arr.length; i++){
@@ -178,4 +178,27 @@ function getSysid(num){
 		return chg.sys_id;
 	}
 		return '';
+}
+
+	
+	
+	
+	
+	
+// >>>>>>>>>>>>>>>>>>>>>>> ANOTHER SCRIPTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
+	// STATE TO CLOSED for inc older than 30 days for specyfic assgnment group
+var grIncident = new GlideRecord('incident');
+grIncident.addQuery('active','true');
+grIncident.addQuery("sys_created_onRELATIVELE@dayofweek@ago@30");              // specifying the date of creation of incidents on which the script is to run
+grIncident.addQuery('contact_type','event_management');                        // specyfic contact type
+grIncident.addQuery('assignment_group','30d97d97c7de770064d5f293ef227935');    // specyfic assignment group
+grIncident.addQuery('stateIN111,110,1');                                       // specyfying states
+grIncident.orderBy('order');
+grIncident.query();
+while (grIncident.next()) {
+    grIncident.state = '7'; // 7 - closed
+    grIncident.close_code = 'Not Solved (Not Reproducible)';
+    grIncident.close_notes = 'State automatically changed to Closed - Incident older than 30 days';
+    grIncident.update();
 }
