@@ -183,6 +183,14 @@ function getSysid(num){
 	
 	
 	
+// >>>>>>>>>>>>>>>>>>>>>>> Multiple Deleting Records <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<	
+	
+var grRu = new GlideRecord('u_integration_subscription'); // table name
+grRu.addEncodedQuery("your query"); //query
+grRu.query();
+grRu.deleteMultiple();
+	
+	
 	
 	
 // >>>>>>>>>>>>>>>>>>>>>>> ANOTHER SCRIPTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -202,3 +210,7 @@ while (grIncident.next()) {
     grIncident.close_notes = 'State automatically changed to Closed - Incident older than 30 days';
     grIncident.update();
 }
+	
+	
+	
+
