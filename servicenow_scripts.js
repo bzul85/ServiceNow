@@ -18,6 +18,18 @@ if(gr.next()) {
    gr.update();
 }
 
+
+var gr = new GlideRecord('change_request');
+gr.addQuery('number', 'CHG0048114');
+gr.query();
+if(gr.next()) {
+   gr.state = '308';  //308 CANCELLED
+   gr.u_qs_closure_code =  '3'    //3 cancelled   
+   gr.comments = 'cancelled as requested by  XXXXXXXXXX'
+   gr.update();
+}
+
+
 // example
 var target = new GlideRecord('incident'); 
 target.addQuery('priority',1);
