@@ -3,7 +3,7 @@
     // https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB0520375
 
     // ********** EDIT VARIABLES BELOW **********
-    var needle = "Change has been cancelled following RITM0090864 requested by Zsuzsanna Dobos-Matyas"; // text that only the specific comment you're trying to delete would contain
+    var needle = "Example of comment to remove"; // text that only the specific comment you're trying to delete would contain
     // var recordSid = '4b93e6115f39e41c64d574a460069c6d'; // sys_id of the record where the comment is
     var deleteEmails = false; // If there were any emails sent from this record with the data you're trying to delete has it, delete those email logs as well.
     // ********** EDIT VARIABLES ABOVE **********
