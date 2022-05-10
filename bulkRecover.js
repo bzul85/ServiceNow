@@ -35,7 +35,7 @@ gs.print('Change Request count = '+ chgReq.getRowCount());
         //            gs.print(chgTaskNum + ' Ctask State after change = ' + chgTask.state);
         //         }
          
-        //  chgReq.comments = 'Change has been cancelled following RITM0090864 requested by Zsuzsanna Dobos-Matyas';
+        //  chgReq.comments = 'Example of comment';
         //  chgReq.state = 308; // closed, '308' for Cancel
         //  chgReq.u_qs_closure_code = 3; // closure code set to cancelled
          //chgReq.setWorkflow(false); // it will bypass BRs CS etc.
