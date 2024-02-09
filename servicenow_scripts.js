@@ -205,7 +205,21 @@ grRu.deleteMultiple();
 	
 	
 	
-// >>>>>>>>>>>>>>>>>>>>>>> ANOTHER SCRIPTS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// >>>>>>>>>>>>>>>>>>>>>>> UPDATE INCIDENT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
+	// STATE TO CLOSED for specific incident
+var grIncident = new GlideRecord('incident');
+grIncident.addQuery('number','INC2843073');
+grIncident.orderBy('order');
+grIncident.query();
+while (grIncident.next()) {
+   grIncident.state = '7'; // 7 - closed
+   grIncident.close_code = 'Not Solved (Not Reproducible)';
+   grIncident.close_notes = 'closed as it is duplicate';
+   // grIncident.update(); //uncoment after test
+gs.log('number: ' + grIncident.number + ' ; close code: ' + grIncident.close_code + ' ; state: ' + grIncident.state.getDisplayValue() + ' ; close note: ' + grIncident.close_notes);
+}
+
 	
 	// STATE TO CLOSED for inc older than 30 days for specyfic assgnment group
 var grIncident = new GlideRecord('incident');
